@@ -1,0 +1,42 @@
+---
+import type { Publication as PublicationData } from '../data/publications';
+import { profile } from '../data/profile';
+interface Props { publication: PublicationData }
+const { publication } = Astro.props;
+const linkLabels = { paper: 'Paper', code: 'Code', project: 'Project', arxiv: 'arXiv', bibtex: 'BibTeX' } as const;
+const publicationLinks = Object.entries(publication.links).filter((entry): entry is [string, string] => Boolean(entry[1]));
+---
+<article class="publication">
+  {publication.thumbnail && <img class="publication-thumbnail" src={publication.thumbnail} alt="" loading="lazy" />}
+  <div>
+    <h3>{publication.title}</h3>
+    <p class="authors">{publication.authors.map((author, index) => <><span class:list={[{ 'is-owner': author === profile.name }]}>{author}</span>{index < publication.authors.length - 1 ? ', ' : ''}</>)}</p>
+    <p class="venue"><cite>{publication.venue}</cite>, {publication.year}{publication.pages && <>, pp. {publication.pages}</>}{publication.status && <span class="status">{publication.status}</span>}</p>
+    {publication.description && <p class="publication-description">{publication.description}</p>}
+    {publicationLinks.length > 0 && <div class="publication-links">{publicationLinks.map(([kind, href]) => <a href={href}>{linkLabels[kind as keyof typeof linkLabels]}</a>)}</div>}
+    {publication.citation && (
+      <details class="citation-block">
+        <summary>Cite</summary>
+        <div class="citation-content">
+          <button class="copy-citation" type="button">Copy BibTeX</button>
+          <pre><code>{publication.citation}</code></pre>
+        </div>
+      </details>
+    )}
+  </div>
+</article>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-citation').forEach((button) => {
+    if (button.dataset.ready === 'true') return;
+    button.dataset.ready = 'true';
+    button.addEventListener('click', async () => {
+      const citation = button.closest('.citation-content')?.querySelector('code')?.textContent;
+      if (!citation) return;
+      await navigator.clipboard.writeText(citation);
+      const originalLabel = button.textContent;
+      button.textContent = 'Copied';
+      window.setTimeout(() => { button.textContent = originalLabel; }, 1600);
+    });
+  });
+</script>

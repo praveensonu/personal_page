@@ -1,0 +1,12 @@
+---
+import { profile, profileLinks } from '../data/profile';
+import SocialLinks from './SocialLinks.astro';
+---
+<aside class="profile-sidebar" aria-label="Researcher profile">
+  <img class="profile-photo" src={profile.profileImage} alt={`Portrait of ${profile.name}`} width="320" height="320" />
+  <h1>{profile.name}</h1>
+  <p class="profile-title">{profile.title}</p>
+  <p class="profile-meta">{profile.institution}</p>
+  {profile.location && <p class="profile-meta">{profile.location}</p>}
+  <SocialLinks links={profileLinks} />
+</aside>

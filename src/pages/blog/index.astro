@@ -1,0 +1,10 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogPostPreview from '../../components/BlogPostPreview.astro';
+import { profile } from '../../data/profile';
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title={`Blog — ${profile.name}`} description="Notes on artificial intelligence, machine learning, and research.">
+  <div class="blog-index page-width-narrow"><header class="page-intro"><h1>Blog</h1><p>Notes on research, machine learning, and ideas in progress.</p></header><div class="post-list">{posts.length > 0 ? posts.map((post) => <BlogPostPreview post={post} />) : <p>No posts published yet.</p>}</div></div>
+</BaseLayout>

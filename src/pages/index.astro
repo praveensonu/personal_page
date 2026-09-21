@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfileSidebar from '../components/ProfileSidebar.astro';
+import Publication from '../components/Publication.astro';
+import { profile } from '../data/profile';
+import { selectedPublications } from '../data/publications';
+const publicationYears = [...new Set(selectedPublications.map((publication) => publication.year))].sort((a, b) => b - a);
+---
+<BaseLayout title={`${profile.name} — ${profile.title}`} description={`Academic profile and research of ${profile.name}.`}>
+  <div class="profile-layout page-width"><ProfileSidebar /><div class="profile-content">
+    <section aria-labelledby="about-heading"><h2 id="about-heading">About</h2>{profile.bio.map((paragraph) => <p>{paragraph}</p>)}</section>
+    <section aria-labelledby="interests-heading"><h2 id="interests-heading">Research Interests</h2><ul class="interest-list">{profile.researchInterests.map((interest) => <li>{interest}</li>)}</ul></section>
+    <section aria-labelledby="publications-heading"><h2 id="publications-heading">Selected Publications</h2><div class="publication-timeline">{publicationYears.map((year) => <div class="timeline-year"><p class="timeline-year-label">{year}</p><div class="publication-list">{selectedPublications.filter((publication) => publication.year === year).map((publication) => <Publication publication={publication} />)}</div></div>)}</div></section>
+  </div></div>
+</BaseLayout>

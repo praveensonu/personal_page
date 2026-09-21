@@ -1,0 +1,3 @@
+CV PLACEHOLDER
+
+Replace this file with your PDF at public/cv.pdf, then update src/data/profile.ts to use /cv.pdf.

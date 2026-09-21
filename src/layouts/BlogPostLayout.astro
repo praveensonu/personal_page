@@ -1,0 +1,9 @@
+---
+import BaseLayout from './BaseLayout.astro';
+interface Props { title: string; description: string; date: Date; updatedDate?: Date; tags: string[] }
+const { title, description, date, updatedDate, tags } = Astro.props;
+const formatDate = (value: Date) => value.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+<BaseLayout title={`${title} — Blog`} description={description} type="article">
+  <article class="article-shell"><header class="article-header"><a class="back-link" href="/blog">← All posts</a><h1>{title}</h1><p class="article-deck">{description}</p><div class="article-meta"><time datetime={date.toISOString()}>{formatDate(date)}</time>{updatedDate && <span>Updated {formatDate(updatedDate)}</span>}</div>{tags.length > 0 && <ul class="tag-list" aria-label="Tags">{tags.map((tag) => <li>{tag}</li>)}</ul>}</header><div class="prose"><slot /></div></article>
+</BaseLayout>

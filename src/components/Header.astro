@@ -1,0 +1,15 @@
+---
+import { profile } from '../data/profile';
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-name" href="/">{profile.shortName}</a>
+    <nav aria-label="Primary navigation">
+      <a class:list={[{ active: isActive('/') }]} href="/" aria-current={isActive('/') ? 'page' : undefined}>Home</a>
+      <a class:list={[{ active: isActive('/blog') }]} href="/blog" aria-current={isActive('/blog') ? 'page' : undefined}>Blog</a>
+      <a href={profile.cv}>CV</a>
+    </nav>
+  </div>
+</header>
