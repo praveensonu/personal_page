@@ -31,10 +31,12 @@ export const profile: Profile = {
   github: 'https://github.com/praveensonu',
   linkedin: 'https://www.linkedin.com/in/praveen-bushipaka',
   cv: '/Praveen_Bushipaka_CV.pdf',
-  profileImage: '/profile-placeholder.svg',
+  profileImage: '/profile.jpg',
   bio: [
-    'I am a PhD researcher in Artificial Intelligence working at the intersection of LLM unlearning, data selection, trustworthy AI, retrieval, and production-oriented LLM systems. My research spans gradient-guided coreset selection, reliable unlearning evaluation, and privacy-preserving model adaptation.',
-    'My engineering work spans distributed training, parameter-efficient fine-tuning, retrieval-augmented generation, evaluation pipelines, and full-stack AI tooling. I am interested in translating new NLP and LLM methods into robust, measurable systems.',
+    'I am a PhD researcher in Artificial Intelligence, with the past four years of my work focused mainly on NLP and Large Language Models (LLMs). I am currently pursuing my PhD under the supervision of Prof. Tommaso Cucinotta and Dr. Lucia Passaro.',
+    'My research focuses on LLM unlearning, data selection, trustworthy AI, and retrieval. In particular, I work on gradient-guided data selection, reliable evaluation of machine unlearning, and privacy-preserving ways of adapting language models.I have also worked on multi-perspective learning in Social AI, exploring how different human perspectives and opinions can be represented using soft labels rather than reducing them to a single ground-truth label.',
+    'Beyond research, I enjoy building practical AI systems. My engineering experience includes distributed training, parameter-efficient fine-tuning (PEFT), retrieval-augmented generation (RAG), evaluation pipelines, and full-stack AI tools.',
+    'Before moving into NLP and LLM research, I worked with traditional machine learning in industry, where I developed and deployed ML models for real-world applications. This combination of research and engineering experience has shaped my interest in taking new NLP and LLM ideas beyond experiments and turning them into reliable, measurable systems.'
   ],
   researchInterests: ['Large Language Models', 'Machine Unlearning', 'Data Selection & Coresets', 'Trustworthy AI', 'Retrieval-Augmented Generation', 'LLM Systems & Evaluation'],
 };
