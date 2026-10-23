@@ -24,9 +24,9 @@ export const publications: Publication[] = [
     links: { arxiv: 'https://arxiv.org/abs/2608.28361' }, selected: true,
   },
   {
-    title: 'OARS — LLM Unlearning Research',
+    title: 'OARS: Objective-Aware Retain-Set Selection for LLM Unlearning',
     authors: ['Praveen Bushipaka', 'et al.'],
-    venue: 'EACL', year: 2026, status: 'Under Review',
+    venue: 'NAACL', year: 2026, status: 'Under Review',
     description: 'Data-centric research on reliable LLM unlearning.',
     links: {}, selected: true,
   },
